@@ -1,0 +1,6 @@
+samples[0]=Sam1   #sample names = sample folder name
+samples[1]=Sam2
+
+FDRCutOffForExpression=0.05 #FDR cut off for expression
+FoldCutOff=3                #fold cut off for drawing
+genome=hg18                 #genome it is in, for annotation. requires getNamesDesc.py and setting files and annotation dataset
