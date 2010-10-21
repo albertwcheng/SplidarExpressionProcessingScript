@@ -1,4 +1,4 @@
-#! which python
+#!/usr/bin/env python
 
 '''
 

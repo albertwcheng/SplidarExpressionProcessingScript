@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 ######
 ##version 2.0
 ##modified 6/9/2009
