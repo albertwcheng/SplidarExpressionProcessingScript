@@ -1,0 +1,1 @@
+g++ -o AudicClaverieStat *.cpp
