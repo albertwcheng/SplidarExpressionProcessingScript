@@ -85,7 +85,7 @@ nn=$normalizee.$normalizer
 readsToUse=UniqueReads
 
 
-plotTMMGeneExpression.py  --foldCutOff $foldCutOff --plotName "Gene Expression Profile M/E" $nn/$normalizee.$normalizer.00 .GeneName .$normalizee.RPKM .$normalizee.expressedFlag .$normalizee.$readsToUse $totalRReads .$normalizer.RPKM .$normalizer.expressedFlag .$normalizer.$readsToUse $totalGReads $nn/
+Splidar.Expression.plotTMMGeneExpression.py  --foldCutOff $foldCutOff --plotName "Gene Expression Profile M/E" $nn/$normalizee.$normalizer.00 .GeneName .$normalizee.RPKM .$normalizee.expressedFlag .$normalizee.$readsToUse $totalRReads .$normalizer.RPKM .$normalizer.expressedFlag .$normalizer.$readsToUse $totalGReads $nn/
 
 #plotTMMGeneExpression.py  --foldCutOff $foldCutOff --houseKeepingGenes human_housekeepinggenes_sym  --geneNamesToPlotFile $scriptDir/toPlotGenes.txt --plotName "Gene Expression Profile M/E" $nn/$normalizee.$normalizer.00 .GeneName .$normalizee.RPKM .$normalizee.expressedFlag .$normalizee.$readsToUse $totalRReads .$normalizer.RPKM .$normalizer.expressedFlag .$normalizer.$readsToUse $totalGReads $nn/toPlot_
 

@@ -26,7 +26,10 @@ cat $normalizer.head.00 $normalizer.content.00 > $normalizer.values.00
 
 counter=0
 
-for normalizee in Sam2 ; do ####
+
+
+for((normalizeeI=1;normalizeeI<${#samples[@]};normalizeeI++)); do ####
+	normalizee=${samples[$normalizeeI]}
 	echo "normalizing $normalizee on $normalizer"
 
 
