@@ -9,6 +9,9 @@ settingFile=$1
 
 #add myself to path
 source addMyPath.sh
+myPath=`absdirname.py $0`
+export PATH=${PATH}:${myPath}/AudicClaverieStat
+export PYTHONPATH=${PYTHONPATH}:${myPath}
 
 #combine count files from Splidar into one file per sample and then use Poisson background poisson model to process data
 Splidar.Expression.mergeAllSample.sh $settingFile
