@@ -17,11 +17,14 @@ from configobj import ConfigObj
 
 ##ExonicUniqueLength is actually not required. because it is cancelled out in calculation of lambda
 
-def calculateExpressionPvalueFDR(filename,startRow1,prefixHeader,ReadCol1,PosCol1,statEI,FDRCutOff):
+def calculateExpressionPvalueFDR(filename,startRow1,prefixHeader,ReadCol1,PosCol1,statEI,FDRCutOff,useUniqueReadsAsTotal):
 	ReadCol0=ReadCol1-1;
 	PosCol0=PosCol1-1;
 	
-	totalReadsMapped=int(statEI["totalReadsMapped"])
+	if useUniqueReadsAsTotal:
+		totalReadsMapped=int(statEI["totalExonicReads"])+int(statEI["totalNonExonicReads"])
+	else:
+		totalReadsMapped=int(statEI["totalReadsMapped"])
 	NonExonicUniqueReads=int(statEI["totalNonExonicReads"])
 	NonExonicUniqueLength=int(statEI["totalNonExonicPos"])
 	print >> stderr,"statEI"
@@ -127,9 +130,9 @@ def calculateExpressionPvalueFDR(filename,startRow1,prefixHeader,ReadCol1,PosCol
 
 
 
-if(len(argv)<8):
+if(len(argv)<9):
 	print >> stderr, "Argument vector:",argv;
-	print >> stderr, "Usage:",argv[0],"filename,startRow1,prefixHeader,ReadCol1,PosCol1,configFile,FDRCutOff[=2:noCutOff]";	
+	print >> stderr, "Usage:",argv[0],"filename,startRow1,prefixHeader,ReadCol1,PosCol1,configFile,FDRCutOff[=2:noCutOff],useUniquelyReadsAsTotal[=y|n]";	
 	exit();
 
 ##read in stat from config file!
@@ -137,7 +140,8 @@ configFile=argv[6]
 statEI=ConfigObj(configFile);
 
 FDRCutOff=float(argv[7])
-calculateExpressionPvalueFDR(argv[1],int(argv[2]),argv[3],int(argv[4]),int(argv[5]),statEI,FDRCutOff);
+useUniqueReadsAsTotal=(argv[8]=='y')
+calculateExpressionPvalueFDR(argv[1],int(argv[2]),argv[3],int(argv[4]),int(argv[5]),statEI,FDRCutOff,useUniqueReadsAsTotal);
 
 
 

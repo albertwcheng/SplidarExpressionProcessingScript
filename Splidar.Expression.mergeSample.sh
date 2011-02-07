@@ -2,13 +2,14 @@
 
 
 
-if [ $# -lt 2 ]; then
-	echo "usage:" $0 sampleName FDRCutOffForExpression
+if [ $# -lt 3 ]; then
+	echo "usage:" $0 sampleName FDRCutOffForExpression useUniqueReadsAsTotal[y|n]
 	exit
 fi
 
 sampleName=$1
 FDRCutOffForExpression=$2
+useUniqueReadsAsTotal=$3
 folder=$sampleName
 
 echo "merging counts in $sampleName"
@@ -33,8 +34,14 @@ awk '$4!~/N/ && $5>0' $mergedName > $mergedNetName
 echo -e "Chr\tStrand\tGeneName\t$sampleName.UniqueReads\t$sampleName.UniquPos" > $slimName
 cut -f1-5 $mergedNetName >> $slimName
 
+if [[ $useUniqueReadsAsTotal == "y" ]]; then
+	echo "use uniq reads as total"
+else
+	echo "use total mapped reads as total"
+fi
+
 #filename,startRow1,prefixHeader,ReadCol1,PosCol1,totalReadsMapped,statEI
-Splidar.Expression.calculateExpressionPvalueFDR.py $slimName 2 "$sampleName." 4 5 $folder/$sampleName.statEI $FDRCutOffForExpression > $folder/$sampleName.expression.txt
+Splidar.Expression.calculateExpressionPvalueFDR.py $slimName 2 "$sampleName." 4 5 $folder/$sampleName.statEI $FDRCutOffForExpression $useUniqueReadsAsTotal > $folder/$sampleName.expression.txt 
 
 
 

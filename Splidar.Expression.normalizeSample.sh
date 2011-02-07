@@ -38,10 +38,14 @@ paste $normalizeeFile $nn/$normalizer.00 > $nn/$normalizee.$normalizer.00
 source $normalizee/$normalizee.statEI
 totalRReads=$totalReadsMapped
 echo $normalizee has $totalRReads total reads
+totalURReads=`expr $totalExonicReads + $totalNonExonicReads`
+echo $normalizee has $totalURReads total unique reads
 
 source $normalizer/$normalizer.statEI
 totalGReads=$totalReadsMapped
 echo $normalizer has $totalGReads total reads
+totalUGReads=`expr $totalExonicReads + $totalNonExonicReads`
+echo $normalizee has $totalUGReads total unique reads
 
 nn=$normalizee.$normalizer
 

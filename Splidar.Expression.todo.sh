@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ $# -lt 1 ]; then
 	echo `basename $0` settingFile #FDRCutOff(0.05) FoldCutOff(2)
